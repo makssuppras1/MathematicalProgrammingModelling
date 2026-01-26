@@ -3,8 +3,12 @@ name = "mathematicalprogrammingmodelling"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "gurobipy>=13.0.1",
+    "pymupdf==1.26.6",
+    "pymupdf-layout>=1.26.6",
+    "pymupdf4llm>=0.2.9",
     "pyomo>=6.9.5",
+    "pyyaml>=6.0.1",
 ]

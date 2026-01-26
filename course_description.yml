@@ -1,0 +1,83 @@
+course:
+  institution:
+    name: Technical University of Denmark
+    short_name: DTU
+  course_code: "42112"
+  title: "Mathematical Programming Modelling"
+  ects: 5
+  level: "MSc"
+  language: "English"
+  typical_term: "January"
+
+prerequisites:
+  recommended:
+    - "Introduction to Operations Research (42101)"
+  assumed_knowledge:
+    - Linear Programming
+    - Basic Operations Research concepts
+
+overall_objective: >
+  Enable students to solve large-scale operations research problems by
+  formulating mathematical optimization models, implementing them in
+  a standard modelling language, solving them with professional solvers,
+  and interpreting results to support decision-making.
+
+learning_outcomes:
+  knowledge:
+    - Identify appropriate optimization model types for decision problems
+    - Understand linear, mixed-integer, stochastic, and multi-objective models
+  skills:
+    - Formulate linear programming (LP) models
+    - Formulate mixed-integer linear programming (MILP) models
+    - Formulate stochastic programming models
+    - Formulate multi-objective optimization models
+    - Implement models in Julia using JuMP
+    - Solve models using standard solvers
+    - Evaluate and interpret optimization results
+  competencies:
+    - Model complex decision problems realistically
+    - Compare alternative formulations
+    - Assess solution quality and robustness
+
+course_content:
+  modelling_topics:
+    - Linear programming
+    - Mixed-integer linear programming
+    - Stochastic programming
+    - Bi-objective and multi-objective optimization
+  emphasis:
+    - Mathematical formulation
+    - Modelling discipline
+    - Increasing problem complexity
+    - Practical implementation
+  modelling_language:
+    - Julia
+    - JuMP
+
+teaching_methods:
+  - Lectures
+  - Exercises
+  - Progressive modelling problems
+  - Computational experiments
+
+assessment:
+  form: "Exam / project-based assessment"
+  focus:
+    - Correctness of formulation
+    - Modelling quality
+    - Interpretation of results
+
+programme_context:
+  recommended_for:
+    - MSc in Mathematical Modelling and Computation
+  specialization:
+    - Operations Research and Optimization
+
+keywords:
+  - mathematical programming
+  - optimization modelling
+  - linear programming
+  - mixed-integer programming
+  - stochastic programming
+  - JuMP
+  - decision support
