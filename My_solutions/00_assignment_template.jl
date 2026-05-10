@@ -1,6 +1,4 @@
-# ============================
-# JuMP assignment template — copy to a new file and replace TODO / PLACEHOLDER
-# ============================
+
 # Workflow: (1) sets & data  
 #           (2) variables  
 #           (3) objective  
@@ -9,14 +7,12 @@
 #           (6) check status & print values
 # Units: keep one time/money/weight unit everywhere (e.g. minutes vs hours).
 
-
 using JuMP
 using HiGHS
-# using Gurobi  # optional; set ENV["GRB_LICENSE_FILE"] if needed
 
-# -----------------------------
+
 # 1. Sets (indices you will sum over)
-# -----------------------------
+
 # Examples (delete unused):
 #   products = 1:5
 #   months   = 1:12
@@ -24,25 +20,25 @@ using HiGHS
 
 const PLACEHOLDER = 1:1  # remove when you have real indices
 
-# -----------------------------
+
 # 2. Parameters (numbers from the problem statement)
-# -----------------------------
+
 # Examples:
 #   demand = [ ... ]
 #   cap    = 100
 #   cost   = [ ... ]           # cost[j] or cost[t, j]
 #   A      = [ ... ]           # technology / recipe matrix
 
-# -----------------------------
+
 # 3. Model & solver
-# -----------------------------
+
 model = Model(HiGHS.Optimizer)
 # model = Model(Gurobi.Optimizer)
 set_optimizer_attribute(model, "output_flag", true)   # false for quiet runs
 
-# -----------------------------
+
 # 4. Variables (pick domains that match the story)
-# -----------------------------
+
 # Continuous, non-negative (typical LP):
 #   @variable(model, x[products] >= 0)
 #   @variable(model, 0 <= y[months] <= cap_y)
@@ -54,11 +50,10 @@ set_optimizer_attribute(model, "output_flag", true)   # false for quiet runs
 
 # --- PLACEHOLDER: delete this block when your real @variable lines exist -------
 @variable(model, _x[PLACEHOLDER] >= 0)
-# -----------------------------
 
-# -----------------------------
+
 # 5. Objective
-# -----------------------------
+
 # Maximize profit / minimize cost:
 #   @objective(model, Max, sum(profit[j] * x[j] for j in products))
 #   @objective(model, Min, sum(cost[t] * y[t] for t in months))
@@ -67,9 +62,9 @@ set_optimizer_attribute(model, "output_flag", true)   # false for quiet runs
 @objective(model, Max, sum(_x[k] for k in PLACEHOLDER))
 # -----------------------------
 
-# -----------------------------
+
 # 6. Constraints (add one row per rule in the text)
-# -----------------------------
+
 # Capacity:        @constraint(model, sum(a[j]*x[j] for j in J) <= cap)
 # Demand / supply: @constraint(model, sum(x[j] for j in J) == demand)
 # Balance (time):  @constraint(model, inv[t] == inv[t-1] + prod[t] - sales[t])  # handle t==1 separately
@@ -83,9 +78,8 @@ set_optimizer_attribute(model, "output_flag", true)   # false for quiet runs
 @constraint(model, _dummy, sum(_x[k] for k in PLACEHOLDER) <= 1)
 # -----------------------------
 
-# -----------------------------
 # 7. Solve & report
-# -----------------------------
+
 print(model)
 println()
 optimize!(model)
