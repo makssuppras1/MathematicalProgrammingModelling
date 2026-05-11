@@ -1,97 +1,52 @@
-
-# Workflow: (1) sets & data  
-#           (2) variables  
-#           (3) objective  
-#           (4) constraints
-#           (5) optimize!  
-#           (6) check status & print values
-# Units: keep one time/money/weight unit everywhere (e.g. minutes vs hours).
-
-using JuMP
-using HiGHS
-
-
-# 1. Sets (indices you will sum over)
-
-# Examples (delete unused):
-#   products = 1:5
-#   months   = 1:12
-#   arcs     = [(1, 2), (2, 3)]   # or use graph / two indices i,j
-
-const PLACEHOLDER = 1:1  # remove when you have real indices
-
+using JuMP, HiGHS
 
 # 2. Parameters (numbers from the problem statement)
+include("/Users/maks/Library/CloudStorage/OneDrive-DanmarksTekniskeUniversitet/DTU/Re-exam/MathematicalProgrammingModelling/Data/FoodFestival_data.jl")
 
-# Examples:
-#   demand = [ ... ]
-#   cap    = 100
-#   cost   = [ ... ]           # cost[j] or cost[t, j]
-#   A      = [ ... ]           # technology / recipe matrix
+# 1. Sets (indices you will sum over)
+W = S # S already defined as 25 in data file
 
-
-# 3. Model & solver
-
-model = Model(HiGHS.Optimizer)
-# model = Model(Gurobi.Optimizer)
-set_optimizer_attribute(model, "output_flag", true)   # false for quiet runs
-
+# 3. Model
+ff = Model(HiGHS.Optimizer)
+#set_optimizer_attribute(ff, "output_flag", true)   # false for quiet runs
 
 # 4. Variables (pick domains that match the story)
-
-# Continuous, non-negative (typical LP):
-#   @variable(model, x[products] >= 0)
-#   @variable(model, 0 <= y[months] <= cap_y)
-# Two indices:
-#   @variable(model, flow[i in setI, j in setJ] >= 0)
-# Integer / binary (MIP) only if required:
-#   @variable(model, z[products], Bin)
-#   @variable(model, n[products] >= 0, Int)
-
-# --- PLACEHOLDER: delete this block when your real @variable lines exist -------
-@variable(model, _x[PLACEHOLDER] >= 0)
-
+@variable(ff, x[1:W,1:S],Bin)
+@variable(ff, y[1:W],Bin)
 
 # 5. Objective
-
-# Maximize profit / minimize cost:
-#   @objective(model, Max, sum(profit[j] * x[j] for j in products))
-#   @objective(model, Min, sum(cost[t] * y[t] for t in months))
-
-# --- PLACEHOLDER -------------
-@objective(model, Max, sum(_x[k] for k in PLACEHOLDER))
-# -----------------------------
-
+# Minimize number of guards hired:
+@objective(ff, Min, sum(y[worker] for worker = 1:W))
 
 # 6. Constraints (add one row per rule in the text)
+# Ensure that all shifts are covered
+@constraint(ff, covershifts[shift = 1:S],
+            sum(x[worker, shift] for worker = 1:W) == 1
+            )
 
-# Capacity:        @constraint(model, sum(a[j]*x[j] for j in J) <= cap)
-# Demand / supply: @constraint(model, sum(x[j] for j in J) == demand)
-# Balance (time):  @constraint(model, inv[t] == inv[t-1] + prod[t] - sales[t])  # handle t==1 separately
-# Hardness (LP):   ratio between bounds → multiply by total weight:
-#                   h_lo = h .- h_min;  h_hi = h .- h_max
-#                   sum(h_lo[i]*x[i] for i in I) >= 0;  sum(h_hi[i]*x[i] for i in I) <= 0
-# Per-index cap:   @constraint(model, lim[j in J], x[j] <= u[j])
-# Assignments:     @constraint(model, sum(x[i,j] for j in J) == 1)
+# Hire workers if they work at least one shift
+@constraint(ff, assignedifhired[worker = 1:W, shift = 1:S],
+            x[worker, shift] <= y[worker]
+            )
 
-# --- PLACEHOLDER -------------
-@constraint(model, _dummy, sum(_x[k] for k in PLACEHOLDER) <= 1)
-# -----------------------------
+# Limit the same shifts
+@constraint(ff, noconflicts[worker = 1:W, s1 = 1:S, s2 = 1:S; s1 < s2 && Conflict[s1, s2] == 1],
+             x[worker, s1] + x[worker, s2] <= 1
+             )
 
 # 7. Solve & report
+optimize!(ff)
+println("Termination status: $(termination_status(ff))")
 
-print(model)
-println()
-optimize!(model)
-
-println("Termination status: ", termination_status(model))
-
-if is_solved_and_feasible(model)
-    println("Optimal objective: ", objective_value(model))
-    # for j in products
-    #     println(j, " => ", value(x[j]))
-    # end
-    println("Placeholder _x[1] = ", value(_x[1]))
+# Report results
+let
+println("-------------------------------------");
+if termination_status(ff) == MOI.OPTIMAL
+    println("RESULTS:")
+    println("objective = $(round(objective_value(ff), digits=2))")
+    println("solve time = $(solve_time(ff))")
 else
-    println("No optimal solution — check infeasibility / formulation.")
+  println("  No solution")
+end
+println("--------------------------------------");
 end
