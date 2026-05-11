@@ -856,7 +856,7 @@ max  ∑_{t} ∑_{g1 < g2}  SharedInterests_{g1,g2} · y_{g1,g2,t}
 
 #### New constraints (the linearization)
 
-(iv)
+(iv) If guests 1 and 2 are at the same table guests must sit at that table
 ```
 y_{g1,g2,t}  ≤  x_{g1,t}     ∀ t, ∀ (g1, g2) with g1 < g2
 ```
