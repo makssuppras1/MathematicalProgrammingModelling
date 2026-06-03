@@ -1,10 +1,11 @@
 using JuMP, HiGHS
 
-include("../Data/SIP_data.jl") # Til retteren. Skal nok rettes afhængigt af eget repo
+include("../Data/SIP_data.jl")
 
 # Items = 100
 # Buyers = 15
 # Minutes = 480
+
 TransportCost = 50
 
 m2 = Model(HiGHS.Optimizer)
@@ -16,12 +17,11 @@ set_silent(m2)
 @objective(m2, Max,
     sum(Price[i] * x[i] for i = 1:I) - TransportCost * sum(y[b] for b = 1:B))
  
-# Machine capacity (same three constraints as Assignment 1)
 @constraint(m2, sum(PrintTime[i]  * x[i] for i = 1:I) <= Minutes)
 @constraint(m2, sum(PolishTime[i] * x[i] for i = 1:I) <= Minutes)
 @constraint(m2, sum(PaintTime[i]  * x[i] for i = 1:I) <= Minutes)
  
-# Activation link: producing item i forces its buyer to be marked served
+# Activation link:
 @constraint(m2, [i = 1:I], x[i] <= y[BuyerId[i]])
  
 optimize!(m2)

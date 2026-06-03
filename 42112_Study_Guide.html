@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>42112_Study_Guide</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="mathematical-programming-modelling-re-exam-study-guide-v2">42112
+Mathematical Programming Modelling — Re-exam Study Guide v2</h1>
+<p><strong>Exam date:</strong> Tuesday, June 2, 2026, room 175, building
+358 <strong>Guide updated:</strong> May 23, 2026 — reflects the revised
+exam announcement</p>
+<hr />
+<h2 id="what-changed-from-the-earlier-announcement">What changed from
+the earlier announcement</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>First announcement</th>
+<th>Final announcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prep time</td>
+<td>20 min, no notes</td>
+<td><strong>30 min, notes allowed in prep room</strong></td>
+</tr>
+<tr>
+<td>Exam length</td>
+<td>Unspecified</td>
+<td><strong>25 minutes</strong></td>
+</tr>
+<tr>
+<td>Part 1</td>
+<td>Questions on Julia/JuMP submission</td>
+<td><strong>Questions on SIP production planning
+submission</strong></td>
+</tr>
+<tr>
+<td>Part 2</td>
+<td>Random from 5 assignments</td>
+<td><strong>Random from 5 assignments (no notes when
+presenting)</strong></td>
+</tr>
+<tr>
+<td>Assignment pool</td>
+<td>Santa, TA, Tennis, Food Festival, Wedding</td>
+<td><strong>Micro Brewery 2, TA, Tariff Rates, Tennis,
+Wedding</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key implication of notes in prep room:</strong> You do not
+need to memorise formulas. But you must understand each model well
+enough to re-explain it at the whiteboard without reading. Internalise
+the logic; the notation you can reconstruct.</p>
+<hr />
+<h2 id="priority-sip-production-planning-pre-oral-submission">PRIORITY:
+SIP Production Planning pre-oral submission</h2>
+<p>The examiner spends Part 1 of your 25 minutes on this. You have not
+yet shared the problem or data file with me. Upload them and I will: -
+Help formulate the full mathematical model - Write and debug the
+Julia/JuMP code - Identify the likely follow-up questions</p>
+<p><strong>Treat the SIP submission as your highest priority task right
+now.</strong></p>
+<hr />
+<h2 id="how-to-use-this-guide">How to use this guide</h2>
+<p>For each of the 5 assignments you need to be able to: 1. Name the
+<strong>classical OR problem</strong> it is a variant of 2. Write the
+<strong>full model</strong> from scratch (Sets → Parameters → Variables
+→ Objective → Constraints) 3. Explain each constraint in one
+plain-English sentence 4. Answer extensions and “what if”
+modifications</p>
+<p>Sections 1–5 give foundations and toolkit. Read once. Then drill
+section 6 on paper without looking until it feels automatic.</p>
+<hr />
+<h2 id="exam-structure-and-strategy">1. Exam structure and strategy</h2>
+<h3 id="what-happens-on-the-day">What happens on the day</h3>
+<ol type="1">
+<li>Arrive at your allotted time, room 175. Draw one of 5 assignments at
+random.</li>
+<li>Go to <strong>prep room for 30 minutes — notes
+allowed</strong>.</li>
+<li>Return for the <strong>25-minute oral</strong>, two parts:
+<ul>
+<li><strong>Part 1:</strong> Examiner asks questions about your
+<strong>SIP pre-oral submission</strong> (code correctness, constraint
+explanations, extensions).</li>
+<li><strong>Part 2:</strong> Present the drawn assignment at the
+<strong>whiteboard without reading notes</strong>. Examiner asks
+follow-up questions.</li>
+</ul></li>
+</ol>
+<h3 id="what-scores-points">What scores points</h3>
+<ul>
+<li>Starting Part 2 with the five headings on the board <em>before</em>
+any math</li>
+<li>Naming the classical OR problem type early</li>
+<li>Explaining each constraint in plain English as you write it</li>
+<li>Defending your SIP code line by line in Part 1</li>
+<li>Reasoning through “I’ve forgotten the exact detail, but I can derive
+it from…”</li>
+</ul>
+<h3 id="what-loses-points">What loses points</h3>
+<ul>
+<li>Writing Julia code on the whiteboard instead of math</li>
+<li>Mixing up indices in summations</li>
+<li>Bluffing when you don’t know</li>
+</ul>
+<hr />
+<h2 id="the-standard-model-template">2. The standard model template</h2>
+<p>Memorise the five headings. Write them on the board first every
+time.</p>
+<p><span class="math display">\[
+Sets         e.g. b ∈ BeerTypes, m ∈ Months = {1,…,12}
+Parameters   e.g. Demand_{b,m}, StorageCost = 0.1
+Variables    e.g. x_{b,m} ≥ 0: litres of beer b produced in month m
+Objective    e.g. min StorageCost · ∑_b ∑_m s_{b,m}
+Constraints  e.g. ∑_b y_{b,m} ≤ 1  ∀m
+\]</span></p>
+<p>Always say what each variable means in words when you introduce
+it.</p>
+<hr />
+<h2 id="lp-and-mip-the-minimum-you-need">3. LP and MIP — the minimum you
+need</h2>
+<p><strong>LP:</strong> continuous variables, linear objective and
+constraints, solves in polynomial time.</p>
+<p><strong>MIP:</strong> at least one variable is integer or binary,
+NP-hard in general. Solved by Branch &amp; Bound: solve LP relaxations,
+branch on fractional variables, prune subproblems that can’t improve the
+best known integer solution.</p>
+<p><strong>LP relaxation:</strong> drop integrality requirements. Gives
+an upper bound (max) or lower bound (min). The gap between this and the
+best integer solution tells you how hard the instance is.</p>
+<hr />
+<h2 id="juliajump-cheat-sheet">4. Julia/JuMP cheat sheet</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span>, <span class="bu">HiGHS</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer); <span class="fu">set_silent</span>(m)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, x[<span class="fl">1</span><span class="op">:</span>N] <span class="op">&gt;=</span> <span class="fl">0</span>)           <span class="co"># continuous</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, y[<span class="fl">1</span><span class="op">:</span>N], Bin)            <span class="co"># binary</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, z[<span class="fl">1</span><span class="op">:</span>N] <span class="op">&gt;=</span> <span class="fl">0</span>, <span class="dt">Int</span>)       <span class="co"># integer</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(m, Min, <span class="fu">sum</span>(c[i]<span class="op">*</span>x[i] <span class="cf">for</span> i<span class="op">=</span><span class="fl">1</span><span class="op">:</span>N))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint for all i</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [i<span class="op">=</span><span class="fl">1</span><span class="op">:</span>N], <span class="fu">sum</span>(A[i,j]<span class="op">*</span>x[j] <span class="cf">for</span> j<span class="op">=</span><span class="fl">1</span><span class="op">:</span>N) <span class="op">&lt;=</span> b[i])</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Conditional constraint (only generate when condition holds)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [i<span class="op">=</span><span class="fl">1</span><span class="op">:</span>N, j<span class="op">=</span><span class="fl">1</span><span class="op">:</span>N; i<span class="op">&lt;</span>j <span class="op">&amp;&amp;</span> Conflict[i,j]<span class="op">==</span><span class="fl">1</span>], x[i]<span class="op">+</span>x[j] <span class="op">&lt;=</span> <span class="fl">1</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline if — used for first period / cyclic boundary conditions</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>(m <span class="op">&gt;</span> <span class="fl">1</span> ? s[b,m<span class="op">-</span><span class="fl">1</span>] <span class="op">:</span> InitStorage[b])   <span class="co"># Micro Brewery 2: initial storage</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(s <span class="op">&gt;</span> <span class="fl">1</span> ? n[g,s<span class="op">-</span><span class="fl">1</span>] <span class="op">:</span> n[g,S])           <span class="co"># Tariff Rates: cyclic (slot 0 = slot S)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(m)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">termination_status</span>(m), <span class="st">&quot;  Obj: &quot;</span>, <span class="fu">objective_value</span>(m))</span></code></pre></div>
+<hr />
+<h2 id="the-modeling-tricks-toolkit">5. The modeling tricks toolkit</h2>
+<h3 id="trick-1-binary-indicator">Trick 1 — Binary indicator</h3>
+<p>y ∈ {0,1} represents any yes/no decision.</p>
+<h3 id="trick-2-fixed-charge-activation-link">Trick 2 — Fixed charge /
+activation link</h3>
+<p>Activity x only possible when y = 1: <code>x ≤ B·y,  y ∈ {0,1}</code>
+B is an upper bound on x.</p>
+<h3 id="trick-3-at-most-one-from-a-group">Trick 3 — At most one from a
+group</h3>
+<p><code>∑_i y_i ≤ 1</code> Used in Micro Brewery 2: at most one beer
+type brewed per month.</p>
+<h3 id="trick-4-inventory-balance-constraint">Trick 4 — Inventory
+balance constraint</h3>
+<p><code>s_{b,m} = s_{b,m-1} + x_{b,m} − Demand_{b,m}   ∀b, m&gt;1</code>
+First period uses the given initial stock instead of s_{b,0}.</p>
+<h3 id="trick-5-cyclic-boundary">Trick 5 — Cyclic boundary</h3>
+<p>When a schedule repeats (period 0 = period H):
+<code>nRun_{p,0} := nRun_{p,H}</code> in the constraint expression. Used
+in Tariff Rates.</p>
+<h3 id="trick-6-startup-counting">Trick 6 — Startup counting</h3>
+<p>Count how many generators turn ON per period (not total running):
+<code>nStart_{p,h} ≥ nRun_{p,h} − nRun_{p,h-1},  nStart_{p,h} ≥ 0</code>
+The ≥ 0 ensures shutdowns are ignored (nStart only counts increases in
+nRun).</p>
+<h3 id="trick-7-consecutive-blocks-ta-workplan">Trick 7 — Consecutive
+blocks (TA Workplan)</h3>
+<p>y_{ta,p,d} = 1 if TA ta starts in slot p on day d. -
+<code>∑_p y_{ta,p,d} ≤ 1  ∀ta,d</code> -
+<code>x_{ta,p,d} ≤ x_{ta,p-1,d} + y_{ta,p,d}</code> -
+<code>∑_p x ≥ 2·∑_p y</code></p>
+<h3 id="trick-8-flow-conservation-tennis">Trick 8 — Flow conservation
+(Tennis)</h3>
+<p><code>∑_{p2} x_{p2,p} + s_p = ∑_{p2} x_{p,p2} + e_p   ∀p</code></p>
+<h3 id="trick-9-soft-constraints-via-slack-wedding-planner">Trick 9 —
+Soft constraints via slack (Wedding Planner)</h3>
+<p>Replace <code>LHS ≤ RHS</code> with <code>LHS ≤ RHS + slack</code>,
+slack ≥ 0, penalised in objective.</p>
+<h3 id="trick-10-linearise-binary-product-wedding-planner">Trick 10 —
+Linearise binary product (Wedding Planner)</h3>
+<p>Replace x·x (nonlinear) with variable y and:
+<code>y ≤ x_{g1,t};  y ≤ x_{g2,t}</code></p>
+<hr />
+<h2 id="the-five-assignments">6. The five assignments</h2>
+<hr />
+<h2 id="micro-brewery-2-assignment-5.1">§6.5 Micro Brewery 2 —
+Assignment 5.1</h2>
+<p><strong>Classical OR problem:</strong> Production planning / Lot
+sizing (MILP). The “lot sizing” name comes from the key constraint: you
+can only produce one product per period. This turns a pure LP (original
+Micro Brewery §4.2) into a MIP.</p>
+<h3 id="story-one-sentence">Story (one sentence)</h3>
+<p>Plan a year of beer production across 3 types and 12 months to meet
+monthly demand while minimising storage costs, given that you can only
+brew one type of beer per month and have limited storage capacity.</p>
+<h3 id="data">Data</h3>
+<p><strong>Demand (litres):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>TSP-Stout</th>
+<th>Knapsack-Dark</th>
+<th>Set-Partitioning-Light</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>35</td>
+<td>15</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>20</td>
+<td>10</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>15</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>45</td>
+<td>15</td>
+<td>35</td>
+</tr>
+<tr>
+<td>May</td>
+<td>25</td>
+<td>15</td>
+<td>35</td>
+</tr>
+<tr>
+<td>Jun</td>
+<td>65</td>
+<td>55</td>
+<td>80</td>
+</tr>
+<tr>
+<td>Jul</td>
+<td>40</td>
+<td>90</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Aug</td>
+<td>50</td>
+<td>80</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>35</td>
+<td>25</td>
+<td>35</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>85</td>
+<td>45</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>50</td>
+<td>5</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Dec</td>
+<td>55</td>
+<td>30</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Other parameters:</strong> - Brewing capacity: 120
+litres/month (any single type) - Storage capacity: 300 litres total
+across all types, per month - Storage cost: €0.10 per litre per month
+(all types) - Initial stock: TSP-Stout = 25L, Knapsack-Dark = 65L,
+Set-Partitioning-Light = 75L</p>
+<h3 id="sets">Sets</h3>
+<ul>
+<li><strong>b ∈ BeerTypes</strong> = {1=TSP-Stout, 2=Knapsack-Dark,
+3=Set-Partitioning-Light}</li>
+<li><strong>m ∈ Months</strong> = {1, …, 12}</li>
+</ul>
+<h3 id="parameters">Parameters</h3>
+<ul>
+<li><strong>Demand_{b,m}</strong>: litres of beer b demanded in month m
+(from table)</li>
+<li><strong>Capacity</strong> = 120 (max litres brewed per month)</li>
+<li><strong>StorageCap</strong> = 300 (max total litres stored per
+month)</li>
+<li><strong>StorageCost</strong> = 0.1 (€/litre/month)</li>
+<li><strong>InitStock_b</strong>: initial stock in litres (25, 65, 75
+for the three types)</li>
+</ul>
+<h3 id="decision-variables">Decision variables</h3>
+<p><em>(Using the exact variable names from the official course answer
+key)</em></p>
+<ul>
+<li><strong>x_{b,m} ≥ 0</strong>: litres of beer b produced in month
+m</li>
+<li><strong>y_{b,m} ≥ 0</strong>: litres of beer b <strong>in storage at
+the end</strong> of month m</li>
+<li><strong>q_{b,m} ∈ {0,1}</strong>: 1 if beer type b is brewed in
+month m</li>
+</ul>
+<blockquote>
+<p>[!] <strong>Variable naming alert:</strong> The teacher uses
+<code>y</code> for storage and <code>q</code> for the binary selector —
+the opposite of what you might expect. Know this cold before the
+whiteboard.</p>
+</blockquote>
+<h3 id="objective">Objective</h3>
+<p>Minimise total storage cost: <span class="math display">\[
+min  Cost · ∑_b ∑_m  y_{b,m}
+\]</span></p>
+<h3 id="constraints">Constraints</h3>
+<ol type="i">
+<li><p><strong>Inventory balance</strong> — storage at end of month =
+previous storage + production − demand: <span class="math display">\[
+y_{b,m}  =  (m &gt; 1 ? y_{b,m-1} :
+InitialStorage_b)  +  x_{b,m}  −  Demand_{b,m}     ∀ b, m
+\]</span></p></li>
+<li><p><strong>Production only if type selected</strong> (fixed charge
+link — also enforces capacity): <span class="math display">\[
+x_{b,m}  ≤  BrewCap · q_{b,m}     ∀ b, m
+\]</span> <em>(This single constraint does two jobs: it links x to q AND
+caps production at BrewCap. No separate capacity constraint
+needed.)</em></p></li>
+<li><p><strong>Total storage capacity</strong>: <span
+class="math display">\[
+∑_b  y_{b,m}  ≤  StoreCap     ∀ m
+\]</span></p></li>
+<li><p><strong>At most one beer type per month</strong>: <span
+class="math display">\[
+∑_b  q_{b,m}  ≤  1     ∀ m
+\]</span></p></li>
+</ol>
+<h3
+id="juliajump-code-matches-teachers-official-solution-exactly">Julia/JuMP
+code (matches teacher’s official solution exactly)</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span>, <span class="bu">HiGHS</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Months <span class="op">=</span> [<span class="st">&quot;Jan&quot;</span>,<span class="st">&quot;Feb&quot;</span>,<span class="st">&quot;Mar&quot;</span>,<span class="st">&quot;Apr&quot;</span>,<span class="st">&quot;May&quot;</span>,<span class="st">&quot;Jun&quot;</span>,<span class="st">&quot;Jul&quot;</span>,<span class="st">&quot;Aug&quot;</span>,<span class="st">&quot;Sep&quot;</span>,<span class="st">&quot;Oct&quot;</span>,<span class="st">&quot;Nov&quot;</span>,<span class="st">&quot;Dec&quot;</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Beers  <span class="op">=</span> [<span class="st">&quot;TSP-Stout&quot;</span>,<span class="st">&quot;Knapsack-Dark&quot;</span>,<span class="st">&quot;SetPartioning-Light&quot;</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="fu">length</span>(Months); B <span class="op">=</span> <span class="fu">length</span>(Beers)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>BrewCap <span class="op">=</span> <span class="fl">120</span>; StoreCap <span class="op">=</span> <span class="fl">300</span>; Cost <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Demand <span class="op">=</span> [<span class="fl">35</span> <span class="fl">20</span> <span class="fl">15</span> <span class="fl">45</span> <span class="fl">25</span> <span class="fl">65</span> <span class="fl">40</span> <span class="fl">50</span> <span class="fl">35</span> <span class="fl">85</span> <span class="fl">50</span> <span class="fl">55</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>          <span class="fl">15</span> <span class="fl">10</span> <span class="fl">20</span> <span class="fl">15</span> <span class="fl">15</span> <span class="fl">55</span> <span class="fl">90</span> <span class="fl">80</span> <span class="fl">25</span> <span class="fl">45</span>  <span class="fl">5</span> <span class="fl">30</span>;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>           <span class="fl">5</span> <span class="fl">20</span> <span class="fl">20</span> <span class="fl">35</span> <span class="fl">35</span> <span class="fl">80</span> <span class="fl">60</span> <span class="fl">30</span> <span class="fl">35</span> <span class="fl">20</span> <span class="fl">20</span> <span class="fl">40</span>]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>InitialStorage <span class="op">=</span> [<span class="fl">25</span> <span class="fl">65</span> <span class="fl">75</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>microbreweri2 <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(microbreweri2, <span class="fl">0</span> <span class="op">&lt;=</span> x[<span class="fl">1</span><span class="op">:</span>B, <span class="fl">1</span><span class="op">:</span>M])          <span class="co"># production</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(microbreweri2, <span class="fl">0</span> <span class="op">&lt;=</span> y[<span class="fl">1</span><span class="op">:</span>B, <span class="fl">1</span><span class="op">:</span>M])          <span class="co"># storage at end of month</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(microbreweri2, q[<span class="fl">1</span><span class="op">:</span>B, <span class="fl">1</span><span class="op">:</span>M], Bin)           <span class="co"># which beer brewed this month</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(microbreweri2, Min, <span class="fu">sum</span>(Cost<span class="op">*</span>y[b,m] <span class="cf">for</span> b<span class="op">=</span><span class="fl">1</span><span class="op">:</span>B, m<span class="op">=</span><span class="fl">1</span><span class="op">:</span>M))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Inventory balance</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(microbreweri2, [b<span class="op">=</span><span class="fl">1</span><span class="op">:</span>B, m<span class="op">=</span><span class="fl">1</span><span class="op">:</span>M],</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    y[b,m] <span class="op">==</span> (m <span class="op">&gt;</span> <span class="fl">1</span> ? y[b,m<span class="op">-</span><span class="fl">1</span>] <span class="op">:</span> InitialStorage[b]) <span class="op">+</span> x[b,m] <span class="op">-</span> Demand[b,m])</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Production link + capacity (one constraint does both)</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(microbreweri2, [b<span class="op">=</span><span class="fl">1</span><span class="op">:</span>B, m<span class="op">=</span><span class="fl">1</span><span class="op">:</span>M], x[b,m] <span class="op">&lt;=</span> BrewCap <span class="op">*</span> q[b,m])</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Total storage capacity</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(microbreweri2, [m<span class="op">=</span><span class="fl">1</span><span class="op">:</span>M], <span class="fu">sum</span>(y[b,m] <span class="cf">for</span> b<span class="op">=</span><span class="fl">1</span><span class="op">:</span>B) <span class="op">&lt;=</span> StoreCap)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># At most one beer type per month</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(microbreweri2, [m<span class="op">=</span><span class="fl">1</span><span class="op">:</span>M], <span class="fu">sum</span>(q[b,m] <span class="cf">for</span> b<span class="op">=</span><span class="fl">1</span><span class="op">:</span>B) <span class="op">&lt;=</span> <span class="fl">1</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(microbreweri2)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Objective: &quot;</span>, <span class="fu">objective_value</span>(microbreweri2))  <span class="co"># 192.5</span></span></code></pre></div>
+<h3 id="optimal-value-192.5">Optimal value: <strong>€192.5</strong></h3>
+<h3 id="how-this-differs-from-the-original-micro-brewery-4.2">How this
+differs from the original Micro Brewery (§4.2)</h3>
+<p>The original (§4.2) is a pure LP — one beer type, brew as much as you
+like up to 120L. Micro Brewery 2 adds two complications: three competing
+beer types <em>and</em> the constraint that only one can be produced
+each month. The second constraint turns it into a MIP. This is the
+textbook Lot Sizing / Capacitated Production Planning problem.</p>
+<h3 id="likely-follow-up-questions">Likely follow-up questions</h3>
+<ol type="1">
+<li><p><strong>“Why is this a MIP and not an LP?”</strong> The
+constraint “only one beer type per month” requires a binary variable.
+Without it, you could fractionally allocate capacity across types in the
+same month, which isn’t physically meaningful.</p></li>
+<li><p><strong>“What is the role of q_{b,m}? Could you model this
+without it?”</strong> q_{b,m} acts as the selector binary. Without it,
+you can’t enforce “at most one type” linearly — there’s no way to say
+“x_{b,m} &gt; 0 for at most one b” without introducing a
+binary.</p></li>
+<li><p><strong>“Why ≤ 1 and not = 1 in constraint (iv)?”</strong>
+Because the brewer might choose to brew nothing in a month if initial
+stocks are sufficient. Allowing q_sum = 0 is needed for feasibility in
+those months.</p></li>
+<li><p><strong>“What if the storage cost differed by beer
+type?”</strong> Change <code>Cost · ∑y</code> to
+<code>∑_b Cost_b · ∑_m y_{b,m}</code>.</p></li>
+<li><p><strong>“What if you could brew twice per month but still only
+one type per brewing?”</strong> This problem becomes ambiguous (does
+“per brewing” mean anything?). If you mean at most 240L of one type,
+just change Capacity to 240. If you mean two separate brewing runs of
+potentially different types, you’d need two sets of y variables per
+month.</p></li>
+<li><p><strong>“What would the LP relaxation look like, and is it
+tight?”</strong> The LP relaxation lets y_{b,m} ∈ [0,1]. Since the
+optimal integer solution has y_{b,m} ∈ {0,1} anyway (the LP is
+well-structured), the LP relaxation bound may be quite tight or even
+equal to the MIP optimum. This is often the case for lot
+sizing.</p></li>
+<li><p><strong>“What happens if initial storage is 0 for all
+types?”</strong> The model may become infeasible if demand in month 1
+exceeds what can be produced (e.g. if total Jan demand &gt; 120L). You’d
+need to check: ∑<em>b Demand</em>{b,1} ≤ 120. In this dataset ∑_b Jan
+demand = 35+15+5 = 55 ≤ 120, so it’s fine.</p></li>
+</ol>
+<hr />
+<h2 id="workplan-for-teaching-assistants-assignments-9.1-9.2">§6.9
+Workplan for Teaching Assistants — Assignments 9.1, 9.2</h2>
+<p><strong>Classical OR problem:</strong> Manpower / shift
+scheduling.</p>
+<h3 id="story-one-sentence-1">Story (one sentence)</h3>
+<p>Four TAs must collectively cover known hourly demand across 9 days ×
+8 time slots, each working exactly 52 hours total, minimising their
+total inconvenience — with the added requirement (Assignment 9.2) that
+each TA’s daily schedule forms a single contiguous block of at least 2
+hours.</p>
+<h3 id="sets-1">Sets</h3>
+<ul>
+<li><strong>ta ∈ TAs</strong> = {AL, FR, JE, MI} (T = 4)</li>
+<li><strong>p ∈ Periods</strong> = {1,…,8} (representing 9–10, 10–11, …,
+16–17)</li>
+<li><strong>d ∈ Days</strong> = {1,…,9}</li>
+</ul>
+<h3 id="parameters-1">Parameters</h3>
+<ul>
+<li><strong>Demand_{p,d}</strong>: number of TAs required in slot p on
+day d</li>
+<li><strong>Inconvenience_{ta,p,d}</strong>: inconvenience score for TA
+ta working slot p on day d</li>
+</ul>
+<hr />
+<h3 id="assignment-9.1-basic-version">Assignment 9.1 — Basic
+version</h3>
+<h4 id="decision-variables-1">Decision variables</h4>
+<ul>
+<li><strong>x_{ta,p,d} ∈ {0,1}</strong>: 1 if TA ta works slot p on day
+d</li>
+</ul>
+<h4 id="objective-1">Objective</h4>
+<p><span class="math display">\[
+min  ∑_{ta} ∑_p ∑_d  Inconvenience_{ta,p,d} · x_{ta,p,d}
+\]</span></p>
+<h4 id="constraints-1">Constraints</h4>
+<ol type="i">
+<li><p>Cover demand in every slot: <span class="math display">\[
+∑_{ta}  x_{ta,p,d}  ≥  Demand_{p,d}     ∀ p, d
+\]</span></p></li>
+<li><p>Each TA works exactly 52 hours: <span class="math display">\[
+∑_p ∑_d  x_{ta,p,d}  =  52     ∀ ta
+\]</span></p></li>
+</ol>
+<h4 id="juliajump-code">Julia/JuMP code</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, x[ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D], Bin)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(m, Min, <span class="fu">sum</span>(Inconvenience[ta,p,d]<span class="op">*</span>x[ta,p,d] <span class="cf">for</span> ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D], <span class="fu">sum</span>(x[ta,p,d] <span class="cf">for</span> ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T) <span class="op">&gt;=</span> Demand[p,d])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T], <span class="fu">sum</span>(x[ta,p,d] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D) <span class="op">==</span> <span class="fl">52</span>)</span></code></pre></div>
+<h4 id="optimal-value-94.98">Optimal value: <strong>94.98</strong></h4>
+<hr />
+<h3 id="assignment-9.2-add-consecutive-block-constraint">Assignment 9.2
+— Add consecutive-block constraint</h3>
+<p>Each TA may work at most one contiguous block of hours per day, and
+if they work at all that day, they must work at least 2 hours.</p>
+<h4 id="new-decision-variable">New decision variable</h4>
+<ul>
+<li><strong>y_{ta,p,d} ∈ {0,1}</strong>: 1 if TA ta
+<strong>starts</strong> working in slot p on day d</li>
+</ul>
+<h4 id="new-constraints-add-to-the-assignment-9.1-model">New constraints
+(add to the Assignment 9.1 model)</h4>
+<ol start="3" type="i">
+<li><p>At most one start per TA per day: <span class="math display">\[
+∑_p  y_{ta,p,d}  ≤  1     ∀ ta, d
+\]</span></p></li>
+<li><p>Can only be working if already working or just started (sets
+x_{ta,0,d} := 0): <span class="math display">\[
+x_{ta,p,d}  ≤  (p &gt; 1 ? x_{ta,p-1,d} : 0)  +  y_{ta,p,d}     ∀ ta, p,
+d
+\]</span></p></li>
+<li><p>If working at all that day, work at least 2 slots: <span
+class="math display">\[
+∑_p  x_{ta,p,d}  ≥  2 · ∑_p  y_{ta,p,d}     ∀ ta, d
+\]</span></p></li>
+</ol>
+<h4 id="juliajump-code-for-new-constraints">Julia/JuMP code for new
+constraints</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, y[ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D], Bin)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D], <span class="fu">sum</span>(y[ta,p,d] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">&lt;=</span> <span class="fl">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    x[ta,p,d] <span class="op">&lt;=</span> (p <span class="op">&gt;</span> <span class="fl">1</span> ? x[ta,p<span class="op">-</span><span class="fl">1</span>,d] <span class="op">:</span> <span class="fl">0</span>) <span class="op">+</span> y[ta,p,d])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [ta<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T, d<span class="op">=</span><span class="fl">1</span><span class="op">:</span>D],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(x[ta,p,d] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">&gt;=</span> <span class="fl">2</span><span class="fu">*sum</span>(y[ta,p,d] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P))</span></code></pre></div>
+<h4
+id="optimal-value-121.97-worse-than-9.1-as-expected-fewer-schedule-arrangements-available">Optimal
+value: <strong>121.97</strong> (worse than 9.1, as expected — fewer
+schedule arrangements available)</h4>
+<h3 id="likely-follow-up-questions-1">Likely follow-up questions</h3>
+<ol type="1">
+<li><p><strong>“Why does the inconvenience increase with the
+consecutive-block constraint?”</strong> Adding constraints to a
+minimisation problem can only weakly increase the optimum. The TAs lose
+the flexibility to work split shifts where convenient.</p></li>
+<li><p><strong>“What does y_{ta,p,d} represent and why do you need
+it?”</strong> It marks the start of a TA’s working block. Without it,
+you can’t express “contiguous” linearly — you need an anchor
+point.</p></li>
+<li><p><strong>“Why ≤ 1 for starts, not = 1?”</strong> A TA might work
+zero hours on a day (no start, no work). Forcing = 1 would require them
+to work every day.</p></li>
+<li><p><strong>“Why == 52 in constraint (ii) and not ≤ 52?”</strong>
+Each TA is contracted and paid for exactly 52 hours. Using ≤ would let
+the solver minimise hours, possibly leaving demand uncovered.</p></li>
+<li><p><strong>“What if you wanted to minimise the maximum inconvenience
+across TAs instead of total?”</strong> Introduce z, add
+<code>∑_{p,d} Inconvenience_{ta,p,d} · x_{ta,p,d} ≤ z ∀ta</code>, and
+<code>min z</code> (minimax trick).</p></li>
+</ol>
+<hr />
+<h2 id="tennis-assignments-12.1-12.2-12.3-12.4">§6.12 Tennis —
+Assignments 12.1, 12.2, 12.3, 12.4</h2>
+<p><strong>Classical OR problem:</strong> Chinese Postman Problem — find
+the shortest closed walk in a graph that traverses every required edge
+at least once.</p>
+<h3 id="story-one-sentence-2">Story (one sentence)</h3>
+<p>A sweeper must clean all lines on one half of a clay tennis court (12
+intersection points, 11 required line segments) by walking every line at
+least once, minimising total walking distance.</p>
+<h3 id="court-layout">Court layout</h3>
+<p>12 points with (x,y) coordinates (feet):</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Index</th>
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>B0</td>
+<td>2</td>
+<td>4.5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>D0</td>
+<td>3</td>
+<td>31.5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>E0</td>
+<td>4</td>
+<td>36</td>
+<td>0</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>5</td>
+<td>4.5</td>
+<td>18</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>6</td>
+<td>18</td>
+<td>18</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>7</td>
+<td>31.5</td>
+<td>18</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>8</td>
+<td>0</td>
+<td>39</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>9</td>
+<td>4.5</td>
+<td>39</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>10</td>
+<td>18</td>
+<td>39</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>11</td>
+<td>31.5</td>
+<td>39</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>12</td>
+<td>36</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Required lines (oriented — defined one direction to avoid
+duplicates):</strong> 1→2, 1→8, 2→5, 2→3, 3→4, 3→7, 4→12, 5→6, 5→9, 6→7,
+6→10, 7→11</p>
+<h3 id="assignment-12.1-analytical-no-model-needed">Assignment 12.1 —
+Analytical (no model needed)</h3>
+<p>If only walking <em>on</em> the lines (no shortcuts), the optimal
+tour is <strong>390 feet</strong>. This is derived by inspection of the
+graph, not by MIP.</p>
+<h3 id="assignment-12.2-walk-between-lines-return-to-start">Assignment
+12.2 — Walk between lines, return to start</h3>
+<h4 id="sets-2">Sets</h4>
+<ul>
+<li><strong>p ∈ Points</strong> = {1,…,12}</li>
+</ul>
+<h4 id="parameters-2">Parameters</h4>
+<ul>
+<li><strong>Distance_{p1,p2}</strong>: Euclidean distance between points
+p1 and p2</li>
+<li><strong>Lines_{p1,p2} ∈ {0,1}</strong>: 1 if there is a required
+line from p1 to p2</li>
+</ul>
+<h4 id="decision-variables-2">Decision variables</h4>
+<ul>
+<li><strong>x_{p1,p2} ∈ {0,1}</strong>: 1 if the sweeper walks from p1
+to p2</li>
+</ul>
+<h4 id="objective-2">Objective</h4>
+<p><span class="math display">\[
+min  ∑_{p1,p2}  Distance_{p1,p2} · x_{p1,p2}
+\]</span></p>
+<h4 id="constraints-2">Constraints</h4>
+<ol type="i">
+<li><p>Flow conservation (valid walk — what comes in equals what goes
+out): <span class="math display">\[
+∑_{p2}  x_{p2,p1}  =  ∑_{p2}  x_{p1,p2}     ∀ p1
+\]</span></p></li>
+<li><p>Every required line must be cleaned: <span
+class="math display">\[
+x_{p1,p2}  +  x_{p2,p1}  ≥  Lines_{p1,p2}     ∀ p1, p2
+\]</span></p></li>
+</ol>
+<h4 id="optimal-value-306-feet">Optimal value: <strong>306
+feet</strong></h4>
+<hr />
+<h3 id="assignment-12.3-allow-start-end">Assignment 12.3 — Allow start ≠
+end</h3>
+<p>The sweeper doesn’t need to return to their start point.</p>
+<h4 id="new-decision-variables">New decision variables</h4>
+<ul>
+<li><strong>s_p ∈ {0,1}</strong>: 1 if the sweeper starts at point
+p</li>
+<li><strong>e_p ∈ {0,1}</strong>: 1 if the sweeper ends at point p</li>
+</ul>
+<h4 id="modified-flow-conservation-replaces-constraint-i">Modified flow
+conservation (replaces constraint (i)):</h4>
+<p><span class="math display">\[
+∑_{p2} x_{p2,p1}  +  s_{p1}  =  ∑_{p2} x_{p1,p2}  +  e_{p1}     ∀ p1
+\]</span></p>
+<h4 id="new-constraints">New constraints</h4>
+<p><span class="math display">\[
+∑_p  s_p  =  1       (exactly one start)
+∑_p  e_p  =  1       (exactly one end)
+\]</span></p>
+<h4 id="optimal-value-280.5-feet">Optimal value: <strong>280.5
+feet</strong></h4>
+<hr />
+<h3
+id="assignment-12.4-start-and-end-must-be-on-outside-lines-only">Assignment
+12.4 — Start and end must be on outside lines only</h3>
+<p>Interior nodes (B1, C1, D1, B2, C2, D2 = indices 5,6,7,9,10,11) are
+disallowed as start/end:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> [<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fix</span>(s[p], <span class="fl">0</span>; force<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fix</span>(<span class="cn">e</span>[p], <span class="fl">0</span>; force<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<h4
+id="optimal-value-287.47-feet-slightly-worse-than-12.3-as-expected-less-flexibility">Optimal
+value: <strong>287.47 feet</strong> (slightly worse than 12.3, as
+expected — less flexibility)</h4>
+<h3
+id="juliajump-code-assignment-12.3-the-most-general-version">Julia/JuMP
+code (Assignment 12.3, the most general version)</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span>, <span class="bu">HiGHS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x_pos <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">4.5</span>, <span class="fl">31.5</span>, <span class="fl">36</span>, <span class="fl">4.5</span>, <span class="fl">18</span>, <span class="fl">31.5</span>, <span class="fl">0</span>,  <span class="fl">4.5</span>, <span class="fl">18</span>,  <span class="fl">31.5</span>, <span class="fl">36</span> ]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y_pos <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">0</span>,   <span class="fl">0</span>,    <span class="fl">0</span>,  <span class="fl">18</span>,  <span class="fl">18</span>, <span class="fl">18</span>,   <span class="fl">39</span>, <span class="fl">39</span>,  <span class="fl">39</span>,  <span class="fl">39</span>,   <span class="fl">39</span> ]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">12</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Distance <span class="op">=</span> [<span class="fu">sqrt</span>((x_pos[i]<span class="op">-</span>x_pos[j])<span class="op">^</span><span class="fl">2</span><span class="fu">+</span>(y_pos[i]<span class="op">-</span>y_pos[j])<span class="op">^</span><span class="fl">2</span>) for i<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P,j<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Lines <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Int</span>, P, P)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a,b) <span class="kw">in</span> [(<span class="fl">1</span>,<span class="fl">2</span>),(<span class="fl">1</span>,<span class="fl">8</span>),(<span class="fl">2</span>,<span class="fl">5</span>),(<span class="fl">2</span>,<span class="fl">3</span>),(<span class="fl">3</span>,<span class="fl">4</span>),(<span class="fl">3</span>,<span class="fl">7</span>),(<span class="fl">4</span>,<span class="fl">12</span>),(<span class="fl">5</span>,<span class="fl">6</span>),(<span class="fl">5</span>,<span class="fl">9</span>),(<span class="fl">6</span>,<span class="fl">7</span>),(<span class="fl">6</span>,<span class="fl">10</span>),(<span class="fl">7</span>,<span class="fl">11</span>)]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    Lines[a,b] <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer); <span class="fu">set_silent</span>(m)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, x[<span class="fl">1</span><span class="op">:</span>P,<span class="fl">1</span><span class="op">:</span>P], Bin)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, s[<span class="fl">1</span><span class="op">:</span>P], Bin)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, <span class="cn">e</span>[<span class="fl">1</span><span class="op">:</span>P], Bin)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(m, Min, <span class="fu">sum</span>(Distance[p,q]<span class="op">*</span>x[p,q] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, q<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P))</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P],</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(x[q,p] <span class="cf">for</span> q<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">+</span> s[p] <span class="op">==</span> <span class="fu">sum</span>(x[p,q] <span class="cf">for</span> q<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">+</span> <span class="cn">e</span>[p])</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, <span class="fu">sum</span>(s[p] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, <span class="fu">sum</span>(<span class="cn">e</span>[p] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, q<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P], x[p,q] <span class="op">+</span> x[q,p] <span class="op">&gt;=</span> Lines[p,q])</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(m)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Distance: &quot;</span>, <span class="fu">objective_value</span>(m))</span></code></pre></div>
+<h3 id="likely-follow-up-questions-2">Likely follow-up questions</h3>
+<ol type="1">
+<li><p><strong>“Why is this called the Chinese Postman
+Problem?”</strong> Formulated by Mei-Ko Kwan: a postman walks every
+street at least once, returning home, minimising distance. The tennis
+sweeper is the same structure.</p></li>
+<li><p><strong>“Why is the Lines matrix oriented (only one
+direction)?”</strong> To avoid generating the same constraint twice.
+<code>x_{p1,p2} + x_{p2,p1} ≥ Lines_{p1,p2}</code> covers both traversal
+directions with one constraint per pair.</p></li>
+<li><p><strong>“What does flow conservation enforce?”</strong> That the
+route is a valid continuous walk. Every time you enter a node, you must
+also leave it (except at the start and end under Assignment
+12.3).</p></li>
+<li><p><strong>“Why are x_{p,p} allowed to exist in the variable
+declaration?”</strong> They’re harmless — walking from a point to itself
+has zero distance and is never used in an optimal solution. You could
+exclude them with <code>[p=1:P, q=1:P; p!=q]</code> for
+cleanliness.</p></li>
+<li><p><strong>“Could you forbid traversing a specific line?”</strong>
+<code>fix(x[p1,p2], 0)</code> and <code>fix(x[p2,p1], 0)</code>, but
+also remove it from Lines (otherwise constraint (ii) becomes
+infeasible).</p></li>
+<li><p><strong>“Why does the optimal distance increase from 12.3 to
+12.4?”</strong> Restricting feasible starts/ends reduces the solution
+space. Fewer options → the best option within the restriction is no
+better than before.</p></li>
+</ol>
+<hr />
+<h2 id="tariff-rates-assignments-14.1-14.2">§6.14 Tariff Rates —
+Assignments 14.1, 14.2</h2>
+<p><strong>Classical OR problem:</strong> Unit Commitment Problem —
+decide which generators to run in each time slot to meet electricity
+demand at minimum cost, accounting for startup costs and reserve
+requirements.</p>
+<h3 id="story-one-sentence-3">Story (one sentence)</h3>
+<p>Schedule 27 generators of 3 types across 5 daily time slots to meet
+electricity demand at minimum operating and startup cost, while always
+maintaining 15% reserve capacity — and the plan repeats every day, so it
+must be cyclic.</p>
+<h3 id="data-1">Data</h3>
+<p><strong>Time slots and demand:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Hours</th>
+<th>Duration</th>
+<th>Demand (MW)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>00:00–06:00</td>
+<td>6h</td>
+<td>15,000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>06:00–09:00</td>
+<td>3h</td>
+<td>30,000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>09:00–15:00</td>
+<td>6h</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>15:00–18:00</td>
+<td>3h</td>
+<td>40,000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>18:00–24:00</td>
+<td>6h</td>
+<td>27,000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Generator specifications:</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 20%" />
+<col style="width: 25%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Count</th>
+<th>Min (MW)</th>
+<th>Max (MW)</th>
+<th>Cost/h at min (€)</th>
+<th>Extra cost/(h·MW) (€)</th>
+<th>Startup cost (€)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>850</td>
+<td>2,000</td>
+<td>1,000</td>
+<td>2</td>
+<td>2,000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10</td>
+<td>1,250</td>
+<td>1,750</td>
+<td>2,600</td>
+<td>1.3</td>
+<td>1,000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>1,500</td>
+<td>4,000</td>
+<td>3,000</td>
+<td>3</td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key:</strong> Generators within the same type are
+<strong>indistinguishable</strong> — you only need to track <em>how
+many</em> of each type are running, not <em>which ones</em>.</p>
+<p><strong>Reserve requirement:</strong> At all times, total
+<em>available</em> generating capacity must be ≥ 1.15 × current demand.
+(Available capacity = max output of running generators, not actual
+output.)</p>
+<h3 id="sets-3">Sets</h3>
+<ul>
+<li><strong>p ∈ PlantTypes</strong> = {1, 2, 3}</li>
+<li><strong>h ∈ HourPeriods</strong> = {1, …, 5}</li>
+</ul>
+<h3 id="parameters-3">Parameters</h3>
+<ul>
+<li><strong>PDEM_h</strong>: MW demand in period h</li>
+<li><strong>NHP_h</strong>: number of hours in period h (6, 3, 6, 3,
+6)</li>
+<li><strong>NG_p</strong>: number of generators of type p (12, 10,
+5)</li>
+<li><strong>MINL_p, MAXL_p</strong>: min and max MW per generator of
+type p</li>
+<li><strong>MINC_p</strong>: €/hour cost to run one generator at minimum
+level</li>
+<li><strong>PC_p</strong>: extra €/(hour·MW) above minimum</li>
+<li><strong>STARTC_p</strong>: one-time startup cost per generator of
+type p that starts</li>
+</ul>
+<h3 id="decision-variables-3">Decision variables</h3>
+<ul>
+<li><strong>nRun_{p,h} ∈ <span
+class="math inline">\(\mathbb{Z}\)</span>, 0 ≤ nRun ≤ NG_p</strong>:
+<strong>n</strong>umber of generators of type p <strong>Run</strong>ning
+in period h</li>
+<li><strong>prod_{p,h} ≥ 0</strong>: total MW <strong>prod</strong>uced
+by all type-p generators in period h</li>
+<li><strong>nStart_{p,h} ≥ 0</strong>: <strong>n</strong>umber of type-p
+generators that <strong>Start</strong> up in period h</li>
+</ul>
+<blockquote>
+<p>These names are not the teacher’s
+(<code>x</code>/<code>y</code>/<code>s</code>) but are semantically
+unambiguous. Any examiner will accept them — what matters is that you
+define each variable clearly in words before using it.</p>
+</blockquote>
+<h3 id="objective-3">Objective</h3>
+<p>Minimise total operating + startup cost: <span
+class="math display">\[
+min  ∑_h ∑_p  MINC_p · NHP_h ·
+nRun_{p,h}                             (fixed run cost)
+   + ∑_h ∑_p  PC_p · NHP_h · (prod_{p,h} − MINL_p ·
+nRun_{p,h})       (variable cost above min)
+   + ∑_h ∑_p  STARTC_p ·
+nStart_{p,h}                                  (startup cost)
+\]</span></p>
+<h3 id="constraints-3">Constraints</h3>
+<ol type="i">
+<li><p><strong>Minimum production</strong> — a running generator must
+produce at least its minimum: <span class="math display">\[
+prod_{p,h}  ≥  MINL_p · nRun_{p,h}     ∀ p, h
+\]</span></p></li>
+<li><p><strong>Maximum production</strong> — a running generator cannot
+exceed its maximum: <span class="math display">\[
+prod_{p,h}  ≤  MAXL_p · nRun_{p,h}     ∀ p, h
+\]</span></p></li>
+<li><p><strong>Meet demand</strong> — total actual production covers
+demand: <span class="math display">\[
+∑_p  prod_{p,h}  ≥  PDEM_h     ∀ h
+\]</span></p></li>
+<li><p><strong>Startup counting</strong> — nStart_{p,h} counts
+generators that turn ON in period h. The plan is <strong>cyclic</strong>
+(period 0 = period H): <span class="math display">\[
+nStart_{p,h}  ≥  nRun_{p,h}  −  nRun_{p,h-1}     ∀ p, h   (with
+nRun_{p,0} := nRun_{p,H})
+\]</span></p></li>
+<li><p><strong>Reserve capacity</strong> — enough generators running to
+<em>potentially</em> meet 115% of demand: <span class="math display">\[
+∑_p  MAXL_p · nRun_{p,h}  ≥  1.15 · PDEM_h     ∀ h
+\]</span></p></li>
+</ol>
+<h3 id="juliajump-code-1">Julia/JuMP code</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span>, <span class="bu">HiGHS</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> <span class="fl">5</span>; P <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>NG      <span class="op">=</span> [<span class="fl">12</span>, <span class="fl">10</span>, <span class="fl">5</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>NHP     <span class="op">=</span> [<span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">6</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>PDEM    <span class="op">=</span> [<span class="fl">15000</span>, <span class="fl">30000</span>, <span class="fl">25000</span>, <span class="fl">40000</span>, <span class="fl">27000</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>MINL    <span class="op">=</span> [<span class="fl">850</span>, <span class="fl">1250</span>, <span class="fl">1500</span>]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>MAXL    <span class="op">=</span> [<span class="fl">2000</span>, <span class="fl">1750</span>, <span class="fl">4000</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>MINC    <span class="op">=</span> [<span class="fl">1000</span>, <span class="fl">2600</span>, <span class="fl">3000</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>PC      <span class="op">=</span> [<span class="fl">2</span>, <span class="fl">1.3</span>, <span class="fl">3</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>STARTC  <span class="op">=</span> [<span class="fl">2000</span>, <span class="fl">1000</span>, <span class="fl">500</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>tarifrates <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer); <span class="fu">set_silent</span>(tarifrates)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(tarifrates, <span class="fl">0</span> <span class="op">&lt;=</span> nRun[p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H] <span class="op">&lt;=</span> NG[p], <span class="dt">Int</span>)  <span class="co"># generators running</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(tarifrates, prod[<span class="fl">1</span><span class="op">:</span>P, <span class="fl">1</span><span class="op">:</span>H] <span class="op">&gt;=</span> <span class="fl">0</span>)                      <span class="co"># total production (MW)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(tarifrates, nStart[<span class="fl">1</span><span class="op">:</span>P, <span class="fl">1</span><span class="op">:</span>H] <span class="op">&gt;=</span> <span class="fl">0</span>)                    <span class="co"># generators started up</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(tarifrates, Min,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(MINC[p] <span class="op">*</span> NHP[h] <span class="op">*</span> nRun[p,h]  <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H) <span class="op">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(PC[p]   <span class="op">*</span> NHP[h] <span class="op">*</span> (prod[p,h] <span class="op">-</span> MINL[p]<span class="op">*</span>nRun[p,h])  <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H) <span class="op">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(STARTC[p] <span class="op">*</span> nStart[p,h]  <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Min and max production per running generator</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(tarifrates, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H], prod[p,h] <span class="op">&gt;=</span> MINL[p]<span class="op">*</span>nRun[p,h])</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(tarifrates, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H], prod[p,h] <span class="op">&lt;=</span> MAXL[p]<span class="op">*</span>nRun[p,h])</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Meet demand</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(tarifrates, [h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H], <span class="fu">sum</span>(prod[p,h] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">&gt;=</span> PDEM[h])</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Startup counting — cyclic: period 0 = period H</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(tarifrates, [p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P, h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H],</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    nStart[p,h] <span class="op">&gt;=</span> nRun[p,h] <span class="op">-</span> (h <span class="op">&gt;</span> <span class="fl">1</span> ? nRun[p,h<span class="op">-</span><span class="fl">1</span>] <span class="op">:</span> nRun[p,H]))</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 15% reserve capacity (Assignment 14.1 only — remove for 14.2)</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(tarifrates, [h<span class="op">=</span><span class="fl">1</span><span class="op">:</span>H],</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(MAXL[p]<span class="op">*</span>nRun[p,h] <span class="cf">for</span> p<span class="op">=</span><span class="fl">1</span><span class="op">:</span>P) <span class="op">&gt;=</span> <span class="fl">1.15</span><span class="op">*</span>PDEM[h])</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(tarifrates)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Total cost: &quot;</span>, <span class="fu">objective_value</span>(tarifrates))  <span class="co"># 988,540</span></span></code></pre></div>
+<h3 id="optimal-values">Optimal values</h3>
+<ul>
+<li><strong>Assignment 14.1</strong> (with 15% reserve):
+<strong>€988,540</strong></li>
+<li><strong>Assignment 14.2</strong> (savings from removing 15%
+reserve): <strong>€750</strong> (new optimum: €987,790)</li>
+</ul>
+<h3 id="common-pitfall">Common pitfall</h3>
+<p>If you get <strong>€1,015,150</strong> instead of €988,540, you
+forgot the cyclic constraint. Without <code>x_{p,0} := x_{p,H}</code>,
+period 1 assumes zero generators were running “yesterday”, incurring
+full startup costs for all generators in slot 1.</p>
+<h3 id="likely-follow-up-questions-3">Likely follow-up questions</h3>
+<ol type="1">
+<li><p><strong>“Why use prod = total production, not
+extra-above-minimum?”</strong> Both formulations work. Using total
+production keeps the demand constraint simple
+(<code>∑prod ≥ demand</code>) and separates the min/max bounds cleanly
+into two constraints. The cost above minimum then appears in the
+objective as <code>PC · (prod − MINL · nRun)</code>.</p></li>
+<li><p><strong>“Why are generators of the same type
+interchangeable?”</strong> Identical min/max levels and costs — we only
+need to know <em>how many</em> are running (nRun), not <em>which
+ones</em>. This makes nRun an integer count rather than a binary per
+individual machine.</p></li>
+<li><p><strong>“What does the reserve constraint enforce, and why does
+removing it save €750?”</strong> It forces enough generators running so
+we <em>could</em> serve 115% of demand — even if prod is less. The
+saving (€750) is the cost of this insurance.</p></li>
+<li><p><strong>“What is the cyclic constraint and why does forgetting it
+inflate the cost?”</strong> Without it, the model treats “before period
+1” as nRun = 0, so period 1 incurs full startup costs for all running
+generators. The cyclic version correctly reads nRun from period H
+(previous day’s last period) instead.</p></li>
+<li><p><strong>“Why is nStart declared continuous, not
+integer?”</strong> Because
+<code>nStart[p,h] ≥ nRun[p,h] − nRun[p,h-1]</code> and
+<code>nStart ≥ 0</code> together force nStart to integer values at
+optimum anyway (since nRun is integer). Continuous is faster for the
+solver.</p></li>
+<li><p><strong>“Assignment 14.2: how do you find the saving?”</strong>
+Comment out constraint (v) and re-solve. The difference between the two
+objective values is the cost of the reserve requirement.</p></li>
+</ol>
+<hr />
+<h2 id="the-wedding-planner-assignments-17.1-17.2-17.3-17.4-17.5">§6.17
+The Wedding Planner — Assignments 17.1, 17.2, 17.3, 17.4, 17.5</h2>
+<p><strong>Classical OR problem:</strong> Multi-objective assignment
+with side constraints. Built incrementally across 5 sub-assignments —
+each adds a new goal.</p>
+<h3 id="story-one-sentence-4">Story (one sentence)</h3>
+<p>Assign 20 wedding guests to 3 tables (capacity 9 each), keeping
+couples together, while maximising shared interests at each table,
+balancing genders, and ensuring each guest knows enough others at their
+table.</p>
+<h3 id="sets-and-parameters-used-across-all-sub-assignments">Sets and
+Parameters (used across all sub-assignments)</h3>
+<ul>
+<li><strong>g ∈ Guests</strong> = {1,…,20}</li>
+<li><strong>t ∈ Tables</strong> = {1,2,3}, <strong>TableCap</strong> =
+9</li>
+<li><strong>Couple_{g1,g2}</strong>: 1 if g1 and g2 are a couple</li>
+<li><strong>SharedInterests_{g1,g2}</strong>: integer (from Assignment
+17.2 onward)</li>
+<li><strong>Male_g, Female_g</strong>: gender flags (from Assignment
+17.3 onward)</li>
+<li><strong>Know_{g1,g2}</strong>: 1 if g1 and g2 know each other (from
+Assignment 17.4 onward)</li>
+</ul>
+<hr />
+<h3 id="assignment-17.1-feasibility-only">Assignment 17.1 — Feasibility
+only</h3>
+<p>Find <em>any</em> valid seating. No real objective (use
+<code>min 42</code> as a placeholder).</p>
+<h4 id="variables">Variables</h4>
+<ul>
+<li><strong>x_{g,t} ∈ {0,1}</strong>: 1 if guest g sits at table t</li>
+</ul>
+<h4 id="constraints-4">Constraints</h4>
+<ol type="i">
+<li>Every guest at exactly one table:
+<code>∑_t x_{g,t} = 1  ∀g</code></li>
+<li>Table capacity: <code>∑_g x_{g,t} ≤ 9  ∀t</code></li>
+<li>Couples together:
+<code>x_{g1,t} = x_{g2,t}  ∀t, ∀(g1,g2) with Couple_{g1,g2}=1</code></li>
+</ol>
+<hr />
+<h3 id="assignment-17.2-maximise-shared-interests">Assignment 17.2 —
+Maximise shared interests</h3>
+<h4 id="new-variable">New variable</h4>
+<ul>
+<li><strong>y_{g1,g2,t} ∈ [0,1]</strong> (continuous, defined only for
+g1 &lt; g2): = 1 if both g1 and g2 sit at table t</li>
+</ul>
+<h4 id="new-objective">New objective</h4>
+<p><span class="math display">\[
+max  ∑_t ∑_{g1 &lt; g2}  SharedInterests_{g1,g2} · y_{g1,g2,t}
+\]</span></p>
+<h4 id="new-constraints-linearisation-of-binary-product">New constraints
+(linearisation of binary product)</h4>
+<p><span class="math display">\[
+y_{g1,g2,t}  ≤  x_{g1,t}     ∀ t, g1 &lt; g2
+y_{g1,g2,t}  ≤  x_{g2,t}     ∀ t, g1 &lt; g2
+\]</span> (The third linearisation constraint
+<code>y ≥ x_{g1} + x_{g2} - 1</code> is omitted because the maximisation
+objective already pulls y up whenever allowed.)</p>
+<h4 id="optimal-value-67">Optimal value: <strong>67</strong></h4>
+<hr />
+<h3 id="assignment-17.3-balance-genders">Assignment 17.3 — Balance
+genders</h3>
+<p><strong>Target:</strong> at most 2 more men than women per table (and
+vice versa). Use slack variables for soft enforcement (so the model
+remains feasible even if perfect balance is impossible).</p>
+<h4 id="new-variables">New variables</h4>
+<ul>
+<li><strong>m_t ≥ 0</strong>: excess males beyond +2 at table t</li>
+<li><strong>f_t ≥ 0</strong>: excess females beyond +2 at table t</li>
+</ul>
+<h4 id="new-constraints-1">New constraints</h4>
+<p><span class="math display">\[
+∑_g (Male_g · x_{g,t} − Female_g · x_{g,t})  ≤  2 + m_t     ∀ t
+∑_g (Female_g · x_{g,t} − Male_g · x_{g,t})  ≤  2 + f_t     ∀ t
+\]</span></p>
+<h4 id="new-objective-when-running-this-stage-alone">New objective (when
+running this stage alone)</h4>
+<p><span class="math display">\[
+min  ∑_t (m_t + f_t)
+\]</span></p>
+<h4
+id="optimal-value-this-objective-alone-0-perfect-gender-balance-is-achievable">Optimal
+value (this objective alone): <strong>0</strong> (perfect gender balance
+is achievable)</h4>
+<hr />
+<h3
+id="assignment-17.4-each-guest-knows-3-others-at-their-table">Assignment
+17.4 — Each guest knows ≥ 3 others at their table</h3>
+<h4 id="new-variable-1">New variable</h4>
+<ul>
+<li><strong>k_g ≥ 0</strong>: shortfall in “known guests at same table”
+for guest g below 3</li>
+</ul>
+<h4 id="new-constraint">New constraint</h4>
+<p><span class="math display">\[
+k_g  −  3·x_{g,t}  +  ∑_{g1} Know_{g,g1} · (y_{g,g1,t} +
+y_{g1,g,t})  ≥  0     ∀ g, t
+\]</span> At the table where g sits (x_{g,t}=1), k_g must cover any
+shortfall between the 3 required and the number of known guests actually
+at that table. The <code>y_{g,g1,t} + y_{g1,g,t}</code> term handles the
+fact that y is only defined for g1 &lt; g2.</p>
+<h4 id="new-objective-this-stage-alone">New objective (this stage
+alone)</h4>
+<p><span class="math display">\[
+min  ∑_g  k_g
+\]</span></p>
+<h4 id="optimal-value-this-stage-alone-2">Optimal value (this stage
+alone): <strong>2</strong></h4>
+<hr />
+<h3 id="assignment-17.5-combined-multi-objective">Assignment 17.5 —
+Combined multi-objective</h3>
+<p>All three goals combined into one weighted-sum objective:</p>
+<p><span class="math display">\[
+min  − ∑_t ∑_{g1&lt;g2}  SharedInterests_{g1,g2} · y_{g1,g2,t}
+     +  ∑_t (m_t + f_t)
+     +  ∑_g k_g
+\]</span></p>
+<p>(Shared interests is negated because we want to <em>maximise</em> it,
+but everything is in a <code>min</code> objective.)</p>
+<h4 id="optimal-value-60">Optimal value: <strong>−60</strong></h4>
+<h3 id="juliajump-code-full-assignment-17.5-model">Julia/JuMP code (full
+Assignment 17.5 model)</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span>, <span class="bu">HiGHS</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">&quot;WeddingData20.jl&quot;</span>)  <span class="co"># G, T, TableCap, Couple, SharedInterests, Male, Female, Know</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer); <span class="fu">set_silent</span>(m)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, x[<span class="fl">1</span><span class="op">:</span>G, <span class="fl">1</span><span class="op">:</span>T], Bin)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, <span class="fl">0</span> <span class="op">&lt;=</span> y[g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G, g2<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G, t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T] <span class="op">&lt;=</span> (g1 <span class="op">&lt;</span> g2 ? <span class="fl">1</span> <span class="op">:</span> <span class="fl">0</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, mm[<span class="fl">1</span><span class="op">:</span>T] <span class="op">&gt;=</span> <span class="fl">0</span>)   <span class="co"># excess males</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, ff[<span class="fl">1</span><span class="op">:</span>T] <span class="op">&gt;=</span> <span class="fl">0</span>)   <span class="co"># excess females</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(m, k[<span class="fl">1</span><span class="op">:</span>G] <span class="op">&gt;=</span> <span class="fl">0</span>)    <span class="co"># knowing shortfall</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(m, Min,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">-sum</span>(SharedInterests[g1,g2]<span class="op">*</span>y[g1,g2,t] <span class="cf">for</span> g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,g2<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T <span class="cf">if</span> g1<span class="op">&lt;</span>g2)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fu">sum</span>(mm[t]<span class="op">+</span>ff[t] <span class="cf">for</span> t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fu">sum</span>(k[g] <span class="cf">for</span> g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G], <span class="fu">sum</span>(x[g,t] <span class="cf">for</span> t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T) <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T], <span class="fu">sum</span>(x[g,t] <span class="cf">for</span> g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G) <span class="op">&lt;=</span> TableCap)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G, g2<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G, t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T; Couple[g1,g2]<span class="op">==</span><span class="fl">1</span>], x[g1,t] <span class="op">==</span> x[g2,t])</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T],</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(Male[g]<span class="op">*</span>x[g,t]<span class="op">-</span>Female[g]<span class="op">*</span>x[g,t] <span class="cf">for</span> g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G) <span class="op">&lt;=</span> mm[t]<span class="op">+</span><span class="fl">2</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T],</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(Female[g]<span class="op">*</span>x[g,t]<span class="op">-</span>Male[g]<span class="op">*</span>x[g,t] <span class="cf">for</span> g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G) <span class="op">&lt;=</span> ff[t]<span class="op">+</span><span class="fl">2</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,g2<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T; g1<span class="op">&lt;</span>g2], y[g1,g2,t] <span class="op">&lt;=</span> x[g1,t])</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,g2<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T; g1<span class="op">&lt;</span>g2], y[g1,g2,t] <span class="op">&lt;=</span> x[g2,t])</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(m, [g<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G,t<span class="op">=</span><span class="fl">1</span><span class="op">:</span>T],</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    k[g] <span class="op">-</span> <span class="fl">3</span><span class="op">*</span>x[g,t] <span class="op">+</span> <span class="fu">sum</span>(Know[g,g1]<span class="fu">*</span>(y[g,g1,t]<span class="op">+</span>y[g1,g,t]) <span class="cf">for</span> g1<span class="op">=</span><span class="fl">1</span><span class="op">:</span>G) <span class="op">&gt;=</span> <span class="fl">0</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(m)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Objective: &quot;</span>, <span class="fu">objective_value</span>(m))  <span class="co"># Should be -60</span></span></code></pre></div>
+<h3 id="likely-follow-up-questions-4">Likely follow-up questions</h3>
+<ol type="1">
+<li><p><strong>“Why is y declared continuous, not binary?”</strong>
+Because the linearisation constraints bound y between 0 and 1, and the
+maximisation objective pulls it to 1 whenever allowed. The LP relaxation
+is automatically tight here.</p></li>
+<li><p><strong>“Why only define y for g1 &lt; g2?”</strong> To avoid
+counting each pair twice. SharedInterests_{g1,g2} would otherwise
+contribute to the objective via y_{g1,g2,t} and y_{g2,g1,t}.</p></li>
+<li><p><strong>“Why omit the third linearisation constraint?”</strong>
+The objective is maximising y (negated in min), so y will always be
+pushed to its upper bound. The third constraint would only add redundant
+information.</p></li>
+<li><p><strong>“What do the slack variables m_t and f_t do?”</strong>
+They soften the gender balance constraint. Without them, any instance
+where perfect balance is impossible would be infeasible. With them,
+imbalance is allowed but penalised.</p></li>
+<li><p><strong>“What does a combined objective value of −60 mean
+physically?”</strong> It’s shared_interests − gender_slack −
+knowing_slack = 64 − 2 − 2 = 60, so the objective is −60. The negative
+sign is because shared interests enter the objective negated.</p></li>
+<li><p><strong>“How would you weight shared interests 3× more than
+gender balance?”</strong> Multiply:
+<code>min  −3·∑(SI·y) + 1·∑(m+f) + 1·∑(k)</code>.</p></li>
+</ol>
+<hr />
+<h2 id="whiteboard-presentation-strategy">7. Whiteboard presentation
+strategy</h2>
+<h3 id="using-your-30-minutes-of-prep">Using your 30 minutes of
+prep</h3>
+<ol type="1">
+<li><strong>0–3 min:</strong> Read the problem statement
+<strong>twice</strong>. Underline the objective, the constraints, any
+specific numbers.</li>
+<li><strong>3–7 min:</strong> Identify the classical OR problem. Write
+the 5 headings.</li>
+<li><strong>7–18 min:</strong> Fill in each section on paper. Write
+constraints in plain English first, then in math.</li>
+<li><strong>18–25 min:</strong> Sanity check. For each constraint, does
+the math say what the English says?</li>
+<li><strong>25–30 min:</strong> Plan the whiteboard layout. Where will
+the table go? Where the constraints?</li>
+</ol>
+<h3 id="at-the-whiteboard">At the whiteboard</h3>
+<ul>
+<li><strong>Write the 5 headings first</strong>, then fill in. Never
+dive straight into constraints.</li>
+<li><strong>Talk while you write.</strong> “I’ll define x_{g,t} as 1 if
+guest g sits at table t…”</li>
+<li><strong>Name the classical problem early</strong>: “This is a
+variant of the Unit Commitment Problem…”</li>
+<li><strong>Explain each constraint in plain English</strong> as you
+write it.</li>
+<li><strong>If you forget a detail</strong>, reason through it aloud: “I
+don’t remember the exact number, but it must be at least the maximum
+demand across all slots, so…”</li>
+</ul>
+<h3 id="numbers-to-memorise">Numbers to memorise</h3>
+<table>
+<thead>
+<tr>
+<th>Assignment</th>
+<th>Optimal value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§6.5 Assignment 5.1 — Micro Brewery 2</td>
+<td><strong>€192.5</strong></td>
+</tr>
+<tr>
+<td>§6.9 Assignment 9.1 — TA Workplan basic</td>
+<td><strong>94.98</strong></td>
+</tr>
+<tr>
+<td>§6.9 Assignment 9.2 — TA Workplan w/ blocks</td>
+<td><strong>121.97</strong></td>
+</tr>
+<tr>
+<td>§6.12 Assignment 12.1 — Tennis analytical</td>
+<td><strong>390 ft</strong></td>
+</tr>
+<tr>
+<td>§6.12 Assignment 12.2 — Tennis start=end</td>
+<td><strong>306 ft</strong></td>
+</tr>
+<tr>
+<td>§6.12 Assignment 12.3 — Tennis start≠end</td>
+<td><strong>280.5 ft</strong></td>
+</tr>
+<tr>
+<td>§6.12 Assignment 12.4 — Tennis outside only</td>
+<td><strong>287.47 ft</strong></td>
+</tr>
+<tr>
+<td>§6.14 Assignment 14.1 — Tariff Rates w/ reserve</td>
+<td><strong>€988,540</strong></td>
+</tr>
+<tr>
+<td>§6.14 Assignment 14.2 — Tariff Rates saving</td>
+<td><strong>€750</strong></td>
+</tr>
+<tr>
+<td>§6.17 Assignment 17.2 — Wedding interests</td>
+<td><strong>67</strong></td>
+</tr>
+<tr>
+<td>§6.17 Assignment 17.3 — Wedding gender</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>§6.17 Assignment 17.4 — Wedding knowing</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td>§6.17 Assignment 17.5 — Wedding combined</td>
+<td><strong>−60</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="self-test-try-these-without-your-notes">8. Self-test — try these
+without your notes</h2>
+<p>Once you’ve studied, sit with blank paper and produce the model for
+each in under 12 minutes.</p>
+<ol type="1">
+<li><p><strong>Micro Brewery 2 variant:</strong> Now you can brew two
+types per month, but each brewing run is capped at 80L, and the total
+brewed per month is still 120L. Adapt the model.</p></li>
+<li><p><strong>TA Workplan variant:</strong> TAs can now skip up to 2
+days of work (not work at all that day), but must still hit 52 hours
+total. How does the model change?</p></li>
+<li><p><strong>Tennis variant:</strong> Two sweepers must together clean
+all lines. Each can start and end anywhere. Minimise total walking
+distance of both. (Hint: introduce a second set of x
+variables.)</p></li>
+<li><p><strong>Tariff Rates variant:</strong> A new generator type 4
+costs €4,000/h at minimum and has no startup cost. How do you add it?
+What happens to the optimal value?</p></li>
+<li><p><strong>Wedding Planner variant:</strong> The bride demands that
+no two specific guests (say, g1=3 and g2=7, ex-partners) sit at the same
+table. Add this constraint to the Assignment 17.5 model.</p></li>
+</ol>
+<hr />
+<h2 id="final-reminders">9. Final reminders</h2>
+<ul>
+<li>Upload the <strong>SIP production planning</strong> problem and data
+file so I can help you prepare Part 1 of the oral.</li>
+<li>The <strong>5 headings</strong> (Sets / Parameters / Variables /
+Objective / Constraints) are your whiteboard anchor. Write them first,
+every time.</li>
+<li>Notes are allowed in prep — bring a clean summary of each model. But
+practise presenting <em>without</em> reading them.</li>
+<li>For the oral: <strong>structure beats speed</strong>. A calm,
+step-by-step explanation of a correct model beats a rushed presentation
+of a flawed one.</li>
+<li>If you blank: stop, take a breath, write the 5 headings, start
+filling in the Sets. The rest follows.</li>
+</ul>
+<p>Good luck.</p>
+</body>
+</html>
